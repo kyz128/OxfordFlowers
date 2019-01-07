@@ -217,6 +217,10 @@ def test_accuracy(model, test_loader, gpu):
 	lr= args.lr
 	gpu= args.GPU
 	chkfile= args.checkpoint
+	if use_mode=='resume_train' and chkfile==None:
+		raise RunTimeError('No checkpoint file passed in')
+	if use_mode=='train' and chkfile !=None:
+		raise RunTimeError('Initial training should not have a checkpoint')
 
 	if init_model== 'vgg16':
 		resize_factor= 256
